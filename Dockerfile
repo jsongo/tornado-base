@@ -6,12 +6,9 @@ RUN pip install -r /requirements.txt
 RUN mkdir /app
 WORKDIR /app
 
-RUN pip install supervisor
-RUN echo_supervisord_conf > supervisord.conf && \
-    echo "[include]" >> supervisord.conf && \
-    echo "files = /etc/supervisord.d/*.ini" >> supervisord.conf
-RUN mv supervisord.conf /etc/
-COPY tornado.ini /etc/supervisord.d/
+RUN pip install circus
+COPY circus.ini /etc/
+COPY tornado.ini /etc/circus/
 ONBUILD COPY run.sh /
 
 #EXPOSE 9021 
