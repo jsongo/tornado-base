@@ -1,4 +1,4 @@
-from daocloud.io/python:2.7
+from daocloud.io/python:3.6
 RUN pip install --upgrade pip
 RUN pip install tornado
 COPY requirements.txt /
@@ -14,7 +14,7 @@ RUN mv supervisord.conf /etc/
 COPY tornado.ini /etc/supervisord.d/
 ONBUILD COPY run.sh /
 
-EXPOSE 9021 
+#EXPOSE 9021 
 #CMD ["python", "-m", "tornado.autoreload", "server.py"]
 
 # other operation for the specific app
