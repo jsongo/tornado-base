@@ -1,4 +1,4 @@
-from daocloud.io/python:3.6
+from pypy:3
 RUN pip install --upgrade pip
 RUN pip install tornado
 COPY requirements.txt /
@@ -7,9 +7,6 @@ RUN mkdir /app
 WORKDIR /app
 
 RUN pip install circus
-COPY circus.ini /etc/
-COPY tornado.ini /etc/circus/
-ONBUILD COPY run.sh /
 
 #EXPOSE 9021 
 #CMD ["python", "-m", "tornado.autoreload", "server.py"]
@@ -22,6 +19,11 @@ COPY requirements-others.txt /
 RUN pip install -v -r /requirements-others.txt
 # 时区
 RUN cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+
+# circus
+COPY circus.ini /etc/
+COPY tornado.ini /etc/circus/
+ONBUILD COPY run.sh /
 
 ONBUILD ENTRYPOINT ["/run.sh"]
 ONBUILD CMD ["bash", "-c"]
