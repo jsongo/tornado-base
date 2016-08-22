@@ -1,7 +1,7 @@
-from python:3
+from python:3.5
 RUN pip install --upgrade pip
 RUN pip install tornado
-COPY requirements.txt /
+COPY requirements*.txt /
 RUN pip install -r /requirements.txt
 RUN mkdir /app
 WORKDIR /app
@@ -14,17 +14,20 @@ RUN pip install circus
 # other operation for the specific app
 RUN apt-get update
 # RUN apt-get install -y libmysqld-dev
-RUN apt-get install -y libpq-dev python-dev # python3-dev
+RUN apt-get install -y libpq-dev python-dev
+
+# basic 
+# ENV MOMOKO_PSYCOPG2_IMPL psycopg2cffi
+RUN pip install -r /requirements-basic.txt
 
 # other requirements
-# ENV MOMOKO_PSYCOPG2_IMPL psycopg2cffi
-COPY requirements-others.txt /
-RUN pip install -v -r /requirements-others.txt
+# RUN pip install -r /requirements-other.txt
+
+# wechat requirements
+# RUN pip install -r /requirements-wechat.txt
+
 # 时区
 RUN cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
-
-# lxml
-# RUN pip install -e git+git://github.com/aglyzov/lxml.git@cffi#egg=lxml-cffi
 
 # circus
 COPY circus.ini /etc/
