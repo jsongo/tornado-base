@@ -1,4 +1,4 @@
-from pypy:3
+from python:3
 RUN pip install --upgrade pip
 RUN pip install tornado
 COPY requirements.txt /
@@ -14,17 +14,17 @@ RUN pip install circus
 # other operation for the specific app
 RUN apt-get update
 # RUN apt-get install -y libmysqld-dev
-RUN apt-get install -y libpq-dev python-dev python3-dev
+RUN apt-get install -y libpq-dev python-dev # python3-dev
 
 # other requirements
-ENV MOMOKO_PSYCOPG2_IMPL psycopg2cffi
+# ENV MOMOKO_PSYCOPG2_IMPL psycopg2cffi
 COPY requirements-others.txt /
 RUN pip install -v -r /requirements-others.txt
 # 时区
 RUN cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 
 # lxml
-#RUN pip install -e git+git://github.com/aglyzov/lxml.git@cffi#egg=lxml-cffi
+# RUN pip install -e git+git://github.com/aglyzov/lxml.git@cffi#egg=lxml-cffi
 
 # circus
 COPY circus.ini /etc/
