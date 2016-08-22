@@ -24,7 +24,7 @@ RUN pip install -v -r /requirements-others.txt
 RUN cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 
 # lxml
-RUN pip install -e git+git://github.com/aglyzov/lxml.git@cffi#egg=lxml-cffi
+#RUN pip install -e git+git://github.com/aglyzov/lxml.git@cffi#egg=lxml-cffi
 
 # circus
 COPY circus.ini /etc/
