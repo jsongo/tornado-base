@@ -23,6 +23,9 @@ RUN pip install -v -r /requirements-others.txt
 # 时区
 RUN cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 
+# lxml
+RUN pip install -e git+git://github.com/aglyzov/lxml.git@cffi#egg=lxml-cffi
+
 # circus
 COPY circus.ini /etc/
 COPY tornado.ini /etc/circus/

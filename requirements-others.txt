@@ -6,5 +6,5 @@ msgpack-python
 qiniu
 sqlalchemy
 beautifulsoup4
-lxml
+# lxml
 pingpp
