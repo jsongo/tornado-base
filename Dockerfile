@@ -14,7 +14,7 @@ RUN pip install circus
 # other operation for the specific app
 RUN apt-get update
 # RUN apt-get install -y libmysqld-dev
-RUN apt-get install -y libpq-dev python3-dev
+RUN apt-get install -y libpq-dev python-dev python3-dev
 
 # other requirements
 ENV MOMOKO_PSYCOPG2_IMPL psycopg2cffi
