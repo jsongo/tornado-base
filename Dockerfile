@@ -1,7 +1,7 @@
-from python:3.5
+from python:3.6
 RUN pip install --upgrade pip
 RUN pip install tornado
-COPY requirements*.txt /
+COPY requirements.txt /
 RUN pip install -r /requirements.txt
 RUN mkdir /app
 WORKDIR /app
@@ -18,7 +18,8 @@ RUN apt-get install -y libpq-dev python-dev
 
 # basic 
 # ENV MOMOKO_PSYCOPG2_IMPL psycopg2cffi
-RUN pip install -r /requirements-basic.txt
+ONBUILD COPY requirements-other.txt /
+ONBUILD RUN pip install -r /requirements-basic.txt
 
 # other requirements
 # RUN pip install -r /requirements-other.txt
